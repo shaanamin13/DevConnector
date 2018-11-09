@@ -12,6 +12,7 @@ const app = express();
 //Body parser middleware
 app.use(
   bodyParser.urlencoded({
+    extended: true,
     useNewUrlParser: true
   })
 );
@@ -30,7 +31,7 @@ mongoose
 app.use(passport.initialize());
 
 //Passport Config
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 //Use routes
 app.use("/api/users", users);

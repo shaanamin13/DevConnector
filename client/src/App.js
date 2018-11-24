@@ -6,7 +6,7 @@ import store from "./store";
 import PrivateRoute from "./components/common/PrivateRoute";
 
 import jwt_decode from "jwt-decode";
-import setAuthToken from "./utls/setAuthToken";
+import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import { clearCurrentProfile } from "./actions/profileActions";

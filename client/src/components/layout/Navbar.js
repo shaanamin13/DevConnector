@@ -17,25 +17,23 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
-            <a className="nav-link">Dashboard</a>
+            Dashboard
           </Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/login">
-            <a
-              href="/"
-              onClick={this.onLogoutClick.bind(this)}
-              className="nav-link"
-            >
-              <img
-                className="rounded-circle"
-                src={user.avatar}
-                alt={user.name}
-                title="You must have a Gravatar connected to your email to display an image"
-                style={{ width: "25px", marginRight: "5px" }}
-              />
-              Logout
-            </a>
+          <Link
+            className="nav-link"
+            to="/login"
+            onClick={this.onLogoutClick.bind(this)}
+          >
+            <img
+              className="rounded-circle"
+              src={user.avatar}
+              alt={user.name}
+              title="You must have a Gravatar connected to your email to display an image"
+              style={{ width: "25px", marginRight: "5px" }}
+            />
+            Logout
           </Link>
         </li>
       </ul>
@@ -85,7 +83,7 @@ class Navbar extends Component {
     );
   }
 }
-Navbar.PropTypes = {
+Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };

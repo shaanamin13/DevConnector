@@ -16,6 +16,13 @@ class Profile extends Component {
       this.props.getProfileByHandle(this.props.match.params.handle);
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push("/not-found");
+    }
+  }
+
   static propTypes = {
     prop: PropTypes
   };
@@ -43,9 +50,7 @@ class Profile extends Component {
             education={profile.education}
             experience={profile.experience}
           />
-          {profile.githubusername ? (
-            <ProfileGithub username={profile.githubusername} />
-          ) : null}
+          {profile.github ? <ProfileGithub username={profile.github} /> : null}
         </div>
       );
     }

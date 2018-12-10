@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import isEmpty from "../../validation/is-empty";
 class ProfileHeader extends Component {
-  static propTypes = {
-    prop: PropTypes
-  };
-
   render() {
     const { profile } = this.props;
     return (

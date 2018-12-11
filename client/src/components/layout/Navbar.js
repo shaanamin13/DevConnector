@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import { clearCurrentProfile } from "../../actions/profileActions";
+import {
+  getCurrentProfile,
+  clearCurrentProfile
+} from "../../actions/profileActions";
+import isEmpty from "../../validation/is-empty";
 
 class Navbar extends Component {
   onLogoutClick(e) {
@@ -11,38 +15,47 @@ class Navbar extends Component {
     this.props.clearCurrentProfile();
     this.props.logoutUser();
   }
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
+  }
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const authLinks = (
-      <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
-          <Link className="nav-link" to="/feed">
-            Post Feed
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/dashboard">
-            Dashboard
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            className="nav-link"
-            to="/login"
-            onClick={this.onLogoutClick.bind(this)}
-          >
-            <img
-              className="rounded-circle"
-              src={user.avatar}
-              alt={user.name}
-              title="You must have a Gravatar connected to your email to display an image"
-              style={{ width: "25px", marginRight: "5px" }}
-            />
-            Logout
-          </Link>
-        </li>
-      </ul>
-    );
+    const { profile } = this.props.profile;
+    var authLinks = "";
+    if (profile === null) {
+    } else {
+      authLinks = (
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item">
+            <Link className="nav-link" to="/feed">
+              Post Feed
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/dashboard">
+              Dashboard
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link"
+              to="/login"
+              onClick={this.onLogoutClick.bind(this)}
+            >
+              <img
+                className="rounded-circle"
+                src={profile.picture}
+                alt={user.name}
+                style={{ width: "25px", marginRight: "5px" }}
+              />
+              Logout
+            </Link>
+          </li>
+        </ul>
+      );
+    }
+
     const guestLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
@@ -90,12 +103,14 @@ class Navbar extends Component {
 }
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 export default connect(
   mapStateToProps,
-  { logoutUser, clearCurrentProfile }
+  { logoutUser, clearCurrentProfile, getCurrentProfile }
 )(Navbar);

@@ -3,6 +3,9 @@ const passport = require("passport");
 const router = express.Router();
 const mongoose = require("mongoose");
 
+const multer = require("multer");
+var upload = multer({ dest: "uploads/" });
+
 //Load Validation
 const validateProfileInput = require("../../validation/profile");
 const validateExperienceInput = require("../../validation/experience");
@@ -13,6 +16,7 @@ const Profile = require("../../models/Profile");
 //Load User Model
 const User = require("../../models/User");
 
+//Allow user to add Profile Picure to their profile;
 //@route GET api/profile/test
 //@desc Tests Profile route
 //@access Public
@@ -118,7 +122,12 @@ router.post(
     }
     //Get fields
     const profileFields = {};
+
+    const defaultPicture =
+      "http://www.gravatar.com/avatar/13c5e9ec8a52cef8c826003ac6960dd2?s=200&r=pg&d=mm";
+
     profileFields.user = req.user.id;
+    profileFields.picture = defaultPicture;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.company) profileFields.company = req.body.company;
     if (req.body.website) profileFields.website = req.body.website;

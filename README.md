@@ -1,7 +1,7 @@
 # DevConnector
 Social Network for Developers 
 
-My repository of commits while following the mern-stack-front-to-back tutorial by Brad Traversy.
+Recreation of following the Udemy Course: MERN-Stack-Front-to-Back by Brad Traversy.
 
 Throughout the course I was able to develop an extensive full stack application using
 MongoDB/Mongoose/Express/React/Redux/Node
@@ -22,6 +22,6 @@ body-parser and passport are used to create private routes and manage authorizat
 # Front End
 
 The front end is made with React Components. We made components for the main models of the application and broke them down into subcomponents
-for better modularity. With the use of Reacts render() concept we can make sure to only update html elements that have been affected by state changes.
+for better modularity. With the use of React's render() concept we can make sure to only update html elements that have been affected by state changes.
 
 

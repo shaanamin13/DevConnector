@@ -38,8 +38,8 @@ class Profile extends Component {
         <div>
           <div className="row">
             <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back To Profiles
+              <Link to="/dashboard" className="btn btn-light mb-3 float-left">
+                Back To Dashboard
               </Link>
             </div>
             <div className="col-md-6" />
